@@ -25,7 +25,7 @@ public class UIManager : MonoBehaviour
     }
 
     public void UpdateHealth(int health_int){
-        health.SetText(string.Format("Health: {0}", health_int));
+        health.SetText(string.Format("{0}", health_int));
     }
 
     public void UpdateKills(int kills_int){
