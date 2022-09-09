@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class Fire : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
     {
-        
-    }
-
-    // Update is called once per frame
+    public GameObject projectile;
     void Update()
     {
-        
+        if (Input.GetButtonDown("Fire1"))
+            Instantiate(projectile, transform.position, transform.rotation);
+    
     }
 }
