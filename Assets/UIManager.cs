@@ -9,6 +9,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI kills;
     [SerializeField] private TextMeshProUGUI gameOver;
 
+    [SerializeField] private TextMeshProUGUI waveComplete;
+
+    [SerializeField] private TextMeshProUGUI waveIncoming;
+
     public static UIManager Instance { get; private set; }
 
     private void Awake(){
@@ -34,5 +38,17 @@ public class UIManager : MonoBehaviour
 
     public void GameOver(){
         gameOver.gameObject.SetActive(true);
+    }
+
+    public IEnumerator WaveComplete(){
+        waveComplete.gameObject.SetActive(true);
+        yield return new WaitForSeconds(3);
+        waveComplete.gameObject.SetActive(false);
+    }
+
+    public IEnumerator WaveIncoming(){
+        waveIncoming.gameObject.SetActive(true);
+        yield return new WaitForSeconds(3);
+        waveIncoming.gameObject.SetActive(false);
     }
 }
