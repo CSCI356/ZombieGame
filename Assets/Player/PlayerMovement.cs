@@ -15,6 +15,5 @@ public class PlayerMovement : MonoBehaviour
 
         transform.Rotate(0, ang, 0);
         transform.Translate(0, 0, moveZ);
-        
     }
 }

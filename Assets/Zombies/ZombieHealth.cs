@@ -19,11 +19,10 @@ public class ZombieHealth : MonoBehaviour
         if (collision.gameObject.tag == "Bullet"){
             // for now, just default -10 damage 
             health-=10;
-            Debug.Log(string.Format("Zombie shot: {0}", health));
 
             DamageSelfText(10);
 
-            if(health <= 0){
+            if(health == 0){
                 Death();
             }
         }
