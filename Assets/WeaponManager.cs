@@ -5,7 +5,7 @@ using UnityEngine;
 public class WeaponManager : MonoBehaviour
 {
     [SerializeField] List<GameObject> weapons;
-    [SerializeField] List<int> scores;
+    [SerializeField] List<int> requiredScores;
 
     int currentWeaponIndex = 0;
 
@@ -27,6 +27,6 @@ public class WeaponManager : MonoBehaviour
         new_weapon_instance.transform.parent = transform; 
 
         // sets the nextUpgradeScore from list
-        nextUpgradeScore = scores[currentWeaponIndex+1];
+        nextUpgradeScore = requiredScores[currentWeaponIndex+1];
     }
 }
