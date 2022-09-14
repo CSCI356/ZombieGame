@@ -3135,11 +3135,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c101d115e60e4714489c9b91377417d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapons:
-  - {fileID: 5712776267405310158, guid: 9e6db6bb842836c4e8ea9c9b5a04a67b, type: 3}
-  - {fileID: 7578735233101389544, guid: 768598cc4e29a1b4fa6139d652a70be5, type: 3}
-  - {fileID: 4944586840890050701, guid: 7aa11f430deb6c043ae9533a6f079887, type: 3}
-  requiredScores: 000000000300000006000000
+  weaponsList:
+  - requiredScore: 0
+    weaponPrefab: {fileID: 5712776267405310158, guid: 9e6db6bb842836c4e8ea9c9b5a04a67b,
+      type: 3}
+  - requiredScore: 3
+    weaponPrefab: {fileID: 7578735233101389544, guid: 768598cc4e29a1b4fa6139d652a70be5,
+      type: 3}
+  - requiredScore: 6
+    weaponPrefab: {fileID: 4944586840890050701, guid: 7aa11f430deb6c043ae9533a6f079887,
+      type: 3}
   nextUpgradeScore: 3
 --- !u!4 &1601232403 stripped
 Transform:

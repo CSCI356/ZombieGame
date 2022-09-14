@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
 {
-    [SerializeField] List<GameObject> weapons;
-    [SerializeField] List<int> requiredScores;
+    [SerializeField] List<Weapon> weaponsList;
 
     int currentWeaponIndex = 0;
 
@@ -14,7 +13,7 @@ public class WeaponManager : MonoBehaviour
     public void UpgradeWeapon(){
         currentWeaponIndex++;
 
-        GameObject new_weapon = weapons[currentWeaponIndex];
+        GameObject new_weapon = weaponsList[currentWeaponIndex].weaponPrefab;
 
         // remove previous weapon gameobject
         GameObject childToRemove = transform.GetChild(0).gameObject;
@@ -27,6 +26,11 @@ public class WeaponManager : MonoBehaviour
         new_weapon_instance.transform.parent = transform; 
 
         // sets the nextUpgradeScore from list
-        nextUpgradeScore = requiredScores[currentWeaponIndex+1];
+        nextUpgradeScore = weaponsList[currentWeaponIndex+1].requiredScore;
     }
+}
+[System.Serializable]
+public class Weapon {
+    public int requiredScore = 0;
+    public GameObject weaponPrefab;
 }
