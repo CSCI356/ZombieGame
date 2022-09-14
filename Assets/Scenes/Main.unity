@@ -848,7 +848,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zombie: {fileID: 7753937483545166109, guid: 3641878a6f3661040aa466b135a4a645, type: 3}
-  normalZombiesToSpawn: 3
+  normalZombiesToSpawn: 0
   normalZombiesSpawnedCount: 0
 --- !u!4 &457624692
 Transform:
@@ -1545,6 +1545,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zombieSpawner: {fileID: 457624691}
+  waveAmount: 4
+  waveMultiplierIncrease: 2
 --- !u!4 &760593200
 Transform:
   m_ObjectHideFlags: 0
@@ -3107,7 +3109,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MOVE_SPEED: 20
-  ROTATE_SPEED: 80
+  ROTATE_SPEED: 300
 --- !u!54 &1581723584
 Rigidbody:
   m_ObjectHideFlags: 0

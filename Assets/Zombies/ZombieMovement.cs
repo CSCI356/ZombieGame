@@ -29,6 +29,8 @@ public class ZombieMovement : MonoBehaviour
                 // botAnimator.SetTrigger("walk");
                 this.transform.Translate(0, 0, 0.02F);
             }
+        }else{
+            GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
         }
     }
 

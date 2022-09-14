@@ -6,7 +6,7 @@ public class ZombieSpawner : MonoBehaviour
 {   
     public GameObject zombie;
 
-    public int normalZombiesToSpawn = 3;
+    public int normalZombiesToSpawn = 0;
 
     public int normalZombiesSpawnedCount = 0;
 

@@ -9,6 +9,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] ZombieSpawner zombieSpawner;
     private int currentWave = 1;
+    [SerializeField] private int waveAmount = 3;
+    [SerializeField] private int waveMultiplierIncrease = 2;
+    [SerializeField] private const int DELAY_BETWEEN_WAVES = 10;
 
     private void Awake(){
         // If there is an instance, and it's not me, delete myself
@@ -22,6 +25,10 @@ public class GameManager : MonoBehaviour
         } 
     }
 
+    private void Start(){
+        StartCoroutine(StartNewWave());
+    }
+
     public void IncreaseKills(){
         kills++;
         UIManager.Instance.UpdateKills(kills);
@@ -33,9 +40,11 @@ public class GameManager : MonoBehaviour
     }
 
     public IEnumerator StartNewWave(){
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(DELAY_BETWEEN_WAVES);
         StartCoroutine(UIManager.Instance.WaveIncoming());
-        zombieSpawner.normalZombiesToSpawn += 3;
+        zombieSpawner.normalZombiesToSpawn += waveAmount;
+        waveAmount*=waveMultiplierIncrease;
+        currentWave++;
     }
 
     public void GameOver(){

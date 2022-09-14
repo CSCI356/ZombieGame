@@ -1,4 +1,6 @@
 ﻿using TMPro;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ZombieHealth : MonoBehaviour
@@ -34,14 +36,20 @@ public class ZombieHealth : MonoBehaviour
         // trigger death animation
         animator.SetTrigger("dead");
 
-        // deletes zombie
-        // Destroy(this.gameObject);
+        StartCoroutine(DelayedDelete());
 
         // stop the zombie moving
         GetComponent<ZombieMovement>().StopMovement();
 
         GameManager.Instance.IncreaseKills();
     }
+
+    IEnumerator DelayedDelete(){
+        yield return new WaitForSeconds(5);
+        // deletes zombie
+        Destroy(this.gameObject);
+    }
+
     //User damage feedback on zombies
     private void DamageSelfText(int amountOfDamage) {
         GameObject damageObjectInstance = Instantiate(damageTextObject, canvasTransform);
