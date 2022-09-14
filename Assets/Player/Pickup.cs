@@ -88,7 +88,6 @@ public class Pickup : MonoBehaviour
 
     void SelectWeapon(int index)
     {
-
         // Ensure we have a weapon in the wanted 'slot'
         if (weapons.Count > index && weapons[index] != null)
         {

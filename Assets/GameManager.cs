@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int waveMultiplierIncrease = 2;
     [SerializeField] private const int DELAY_BETWEEN_WAVES = 10;
 
+    [SerializeField] WeaponManager weaponManager;
+
     private void Awake(){
         // If there is an instance, and it's not me, delete myself
         if (Instance != null && Instance != this) 
@@ -32,6 +34,10 @@ public class GameManager : MonoBehaviour
     public void IncreaseKills(){
         kills++;
         UIManager.Instance.UpdateKills(kills);
+
+        if(kills == weaponManager.nextUpgradeScore){
+            weaponManager.UpgradeWeapon();
+        }
 
         if(kills == zombieSpawner.normalZombiesToSpawn){
             StartCoroutine(UIManager.Instance.WaveComplete());
