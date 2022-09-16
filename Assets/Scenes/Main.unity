@@ -1064,7 +1064,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 387778820}
   _joystick: {fileID: 399044715}
-  animator: {fileID: 0}
+  animator: {fileID: 387778822}
   _moveSpeed: 5
 --- !u!54 &387778820
 Rigidbody:
