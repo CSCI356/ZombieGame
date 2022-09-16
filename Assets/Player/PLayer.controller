@@ -8,7 +8,13 @@ AnimatorController:
   m_PrefabAsset: {fileID: 0}
   m_Name: PLayer
   serializedVersion: 5
-  m_AnimatorParameters: []
+  m_AnimatorParameters:
+  - m_Name: isRunning
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 1
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -61,9 +67,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 2.0815034
-  m_TransitionOffset: 0
-  m_ExitTime: 0.36895254
+  m_TransitionDuration: 2.6381345
+  m_TransitionOffset: 0.065346874
+  m_ExitTime: 0.98557055
   m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0

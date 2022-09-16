@@ -1064,7 +1064,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 387778820}
   _joystick: {fileID: 399044715}
-  _animator: {fileID: 387778822}
+  animator: {fileID: 0}
   _moveSpeed: 5
 --- !u!54 &387778820
 Rigidbody:
@@ -2795,43 +2795,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a1bfe72fbc87d04e885296b53e91c66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  smoothCameraRotation: 12
-  cullingLayer:
-    m_Bits: 1
-  lockCamera: 0
-  rightOffset: 0
-  defaultDistance: 2.5
-  height: 1.4
-  smoothFollow: 10
-  xMouseSensitivity: 3
-  yMouseSensitivity: 3
-  yMinLimit: -40
-  yMaxLimit: 80
-  indexList: 0
-  indexLookPoint: 0
-  offSetPlayerPivot: 0
-  currentStateName: 
-  currentTarget: {fileID: 0}
-  movementSpeed: {x: 0, y: 0}
-  targetLookAt: {fileID: 0}
-  currentTargetPos: {x: 0, y: 0, z: 0}
-  lookPoint: {x: 0, y: 0, z: 0}
-  current_cPos: {x: 0, y: 0, z: 0}
-  desired_cPos: {x: 0, y: 0, z: 0}
-  _camera: {fileID: 0}
-  distance: 5
-  mouseY: 0
-  mouseX: 0
-  currentHeight: 0
-  cullingDistance: 0
-  checkHeightRadius: 0.4
-  clipPlaneMargin: 0
-  forward: -1
-  xMinLimit: -360
-  xMaxLimit: 360
-  cullingHeight: 0.2
-  cullingMinDist: 0.1
 --- !u!1 &969572712
 GameObject:
   m_ObjectHideFlags: 0
