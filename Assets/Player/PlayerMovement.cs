@@ -1,19 +1,47 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float MOVE_SPEED = 20.0f;
-    [SerializeField] private float ROTATE_SPEED = 80.0f;
+  
+     Vector3 movementInput;
+    Rigidbody playerRigidbody;
 
-    // Update is called once per frame
-    void Update()
+    void Start()
     {
-        float moveZ = Input.GetAxis("Vertical") * Time.deltaTime * MOVE_SPEED;
-        float ang = Input.GetAxis("Horizontal") * Time.deltaTime * ROTATE_SPEED;
+        playerRigidbody = GetComponent<Rigidbody>();
+        playerRigidbody.freezeRotation = true;
+    }
 
-        transform.Rotate(0, ang, 0);
-        transform.Translate(0, 0, moveZ);
+    void FixedUpdate()
+    {
+        movementInput = Input.GetAxisRaw("Horizontal") * Vector3.right +
+                        Input.GetAxisRaw("Vertical") * Vector3.forward;
+        movementInput.Normalize();
+
+        float y = playerRigidbody.velocity.y;
+
+        if (movementInput != Vector3.zero)
+        {
+            if (transform.forward != movementInput)
+            {
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(movementInput), Time.deltaTime * 180);
+
+                playerRigidbody.velocity = Vector3.MoveTowards(playerRigidbody.velocity, Vector3.zero, Time.deltaTime * 30);
+            }
+            else
+            {
+                playerRigidbody.velocity = Vector3.MoveTowards(playerRigidbody.velocity, movementInput * 10, Time.deltaTime * 30);
+            }
+        }
+        else
+        {
+            playerRigidbody.velocity = Vector3.MoveTowards(playerRigidbody.velocity, Vector3.zero, Time.deltaTime * 30);
+        }
+        Vector3 velocity = playerRigidbody.velocity;
+        velocity.y = y;
+        playerRigidbody.velocity = velocity;
     }
 }
