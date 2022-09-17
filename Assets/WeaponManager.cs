@@ -17,7 +17,19 @@ public class WeaponManager : MonoBehaviour
         GameObject new_weapon = weapons[currentWeaponIndex];
 
         // remove previous weapon gameobject
-        GameObject childToRemove = transform.GetChild(0).gameObject;
+        bool weaponObjectFound = false;
+        int childIndex = 0;
+        GameObject childToRemove = transform.GetChild(childIndex).gameObject;
+        
+        // finds the weapon object to remove
+        while(!weaponObjectFound){
+            childToRemove = transform.GetChild(childIndex).gameObject;
+            if(childToRemove.tag == "Weapon"){
+                weaponObjectFound = true;
+            }
+            childIndex++;
+        }
+
         // childToRemove.parent = null;
         Destroy(childToRemove);
 

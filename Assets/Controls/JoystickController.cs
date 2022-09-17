@@ -7,7 +7,7 @@ public class JoystickController : MonoBehaviour
 {
     [SerializeField] private Rigidbody _rigidbody;
     [SerializeField] private FixedJoystick _joystick;
-    [SerializeField] private Animator _animator;
+    [SerializeField] private Animator animator;
 
     [SerializeField] private float _moveSpeed;
 
@@ -18,9 +18,9 @@ public class JoystickController : MonoBehaviour
         if (_joystick.Horizontal != 0 || _joystick.Vertical != 0)
         {
             transform.rotation = Quaternion.LookRotation(_rigidbody.velocity);
-            _animator.SetBool("isRunning", true);
+            animator.SetBool("isRunning", true);
         }
         else
-            _animator.SetBool("isRunning", false);
+            animator.SetBool("isRunning", false);
     }
 }
