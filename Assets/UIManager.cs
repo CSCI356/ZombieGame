@@ -8,6 +8,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI health;
     [SerializeField] private TextMeshProUGUI kills;
     [SerializeField] private TextMeshProUGUI gameOver;
+    [SerializeField] private TextMeshProUGUI level;
+    [SerializeField] private TextMeshProUGUI experience;
 
     [SerializeField] private TextMeshProUGUI waveComplete;
 
@@ -15,38 +17,54 @@ public class UIManager : MonoBehaviour
 
     public static UIManager Instance { get; private set; }
 
-    private void Awake(){
+    private void Awake()
+    {
         // If there is an instance, and it's not me, delete myself.
-        
-        if (Instance != null && Instance != this) 
-        { 
-            Destroy(this); 
-        } 
-        else 
-        { 
-            Instance = this; 
-        } 
+
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
     }
 
-    public void UpdateHealth(int health_int){
+    public void UpdateHealth(int health_int)
+    {
         health.SetText(string.Format("{0}", health_int));
     }
 
-    public void UpdateKills(int kills_int){
+    public void UpdateKills(int kills_int)
+    {
         kills.SetText(string.Format("Kills: {0}", kills_int));
     }
 
-    public void GameOver(){
+    public void UpdateLevel(int level_int)
+    {
+        level.SetText(string.Format("Level: {0}", level_int));
+    }
+
+    public void UpdateExperience(int experience_int)
+    {
+        experience.SetText(string.Format("Experience: {0}", experience_int));
+    }
+
+    public void GameOver()
+    {
         gameOver.gameObject.SetActive(true);
     }
 
-    public IEnumerator WaveComplete(){
+    public IEnumerator WaveComplete()
+    {
         waveComplete.gameObject.SetActive(true);
         yield return new WaitForSeconds(3);
         waveComplete.gameObject.SetActive(false);
     }
 
-    public IEnumerator WaveIncoming(){
+    public IEnumerator WaveIncoming()
+    {
         waveIncoming.gameObject.SetActive(true);
         yield return new WaitForSeconds(3);
         waveIncoming.gameObject.SetActive(false);
