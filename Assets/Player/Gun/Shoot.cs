@@ -14,6 +14,8 @@ public class Shoot : MonoBehaviour
     [SerializeField] private float fireRate = 1;
     [SerializeField] public int bulletDamage = 1;
 
+    public AudioSource fireSound;
+
     // Update is called once per frame
     void Update()
     {   
@@ -32,6 +34,8 @@ public class Shoot : MonoBehaviour
 
     public void Fire(){
         if (gunheat <= 0){
+            fireSound.Play();
+
             // create a bullet object
             GameObject firedProj;
             firedProj = Instantiate(bullet, barrel.transform.position+barrel.transform.up*2, transform.rotation) as GameObject;
