@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private const int DELAY_BETWEEN_WAVES = 10;
 
     [SerializeField] WeaponManager weaponManager;
+    private SoundFXManager soundFXManager;
 
     private void Awake(){
         // If there is an instance, and it's not me, delete myself
@@ -27,7 +28,9 @@ public class GameManager : MonoBehaviour
         } 
     }
 
+
     private void Start(){
+        soundFXManager = SoundFXManager.Instance;
         StartCoroutine(StartNewWave());
     }
 
@@ -41,6 +44,7 @@ public class GameManager : MonoBehaviour
 
         if(kills == zombieSpawner.normalZombiesToSpawn){
             StartCoroutine(UIManager.Instance.WaveComplete());
+            soundFXManager.PlayWaveCompleteSound();
             StartCoroutine(StartNewWave());
         }
     }
