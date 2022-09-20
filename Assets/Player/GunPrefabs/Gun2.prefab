@@ -103,7 +103,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7578735233101389547}
-  - component: {fileID: 7578735233101389546}
+  - component: {fileID: -4755038557342127115}
   m_Layer: 0
   m_Name: Gun2
   m_TagString: Weapon
@@ -126,7 +126,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!114 &7578735233101389546
+--- !u!114 &-4755038557342127115
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -139,5 +139,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 4698090078698915553, guid: 78ff2dbc3252c4645aec3d474febedc7, type: 3}
-  bulletPower: 5
-  barrel: {fileID: 7578735232732539497}
+  bulletPower: 3
+  barrel: {fileID: 7578735233101389544}

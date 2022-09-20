@@ -5,7 +5,7 @@ using UnityEngine;
 public class Shoot : MonoBehaviour
 {
     [SerializeField] public GameObject bullet;
-    [SerializeField] public float bulletPower = 5.0f;
+    [SerializeField] public float bulletPower = 2.0f;
     [SerializeField] public GameObject barrel;
 
     // Update is called once per frame
