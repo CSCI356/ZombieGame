@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7779454740741659903}
   - component: {fileID: 6762226871997322377}
   m_Layer: 0
-  m_Name: 5RailGun
+  m_Name: 5Railgun
   m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62,7 +62,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 037789c34dc154c438da6ac3c9c98d7e, type: 3}
+  m_audioClip: {fileID: 8300000, guid: b69b4b3e249b47748854b3c0ad67deeb, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
