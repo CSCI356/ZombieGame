@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class Pickup : MonoBehaviour
@@ -7,6 +6,7 @@ public class Pickup : MonoBehaviour
     public Transform cameraTransform;
     public KeyCode pickupKey = KeyCode.E;
     public KeyCode dropKey = KeyCode.G;
+    public KeyCode PlaceKey = KeyCode.P;
     string weaponTag = "Weapon";
 
     public List<GameObject> weapons;
@@ -21,6 +21,10 @@ public class Pickup : MonoBehaviour
     // Insert a gameobject which you drop inside your player gameobject and position it where you want to drop items from
     // to avoid dropping items inside your player
     public Transform dropPoint;
+
+
+    // placeable item hold (of 1)
+    public GameObject placeableItem = null;
 
     void Update()
     {
@@ -84,6 +88,17 @@ public class Pickup : MonoBehaviour
             // Remove it from our 'hand'
             currentWeapon = null;
         }
+
+        // pickup placeable item
+        // add later 
+
+        // use placeable item
+        if (Input.GetKeyDown(PlaceKey))
+        {
+            placeItem();
+        }
+
+
     }
 
     void SelectWeapon(int index)
@@ -104,6 +119,55 @@ public class Pickup : MonoBehaviour
 
             // Show our new weapon
             currentWeapon.SetActive(true);
+        }
+    }
+
+    // pickup items. (placeable Wall)
+    void pickup()
+    {
+        RaycastHit hit;
+        Ray ray = new Ray(cameraTransform.position, cameraTransform.forward);
+
+        if (Physics.Raycast(ray, out hit))
+        {
+            if (hit.transform.CompareTag("obtainable") && Input.GetKeyDown(pickupKey))
+            {
+                // save the item to placeableItem               
+                placeableItem = (hit.collider.gameObject);
+
+                // hide the placeable item in the world 
+                hit.collider.gameObject.SetActive(false);
+            }
+        }
+
+    }
+    // place item (wall)
+    void placeItem()
+    {
+        // the amount of units in front of the player the object will be created 
+        float units = 2;
+
+        // if player has an item to place (wall)
+        if (placeableItem != null)
+        {
+            // snap rotation to ether 0, 90, 180, 270 based on players rotation 
+            float playerRotation = transform.eulerAngles.y;
+
+            float itemFace = 0;
+
+            if (playerRotation > 45 && playerRotation < 135)
+                itemFace = 90;
+            else if (playerRotation > 135 && playerRotation < 225)
+                itemFace = 180;
+            else if (playerRotation > 225 && playerRotation < 315)
+                itemFace = 270;
+
+            // place object near player, thats some units ahead on the x axis     
+            Instantiate(placeableItem, transform.TransformPoint(new Vector3(units, 0, 0f)), new Quaternion(0.0f, itemFace, 0.0f, 0.0f));
+
+            // reset placeableItem to null
+            placeableItem = null;
+
         }
     }
 }
