@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     private int currentWave = 1;
     [SerializeField] private int waveAmount = 3;
     [SerializeField] private int waveMultiplierIncrease = 2;
-    [SerializeField] private const int DELAY_BETWEEN_WAVES = 10;
+    [SerializeField] private int DELAY_BETWEEN_WAVES = 10;
 
     [SerializeField] WeaponManager weaponManager;
     private SoundFXManager soundFXManager;

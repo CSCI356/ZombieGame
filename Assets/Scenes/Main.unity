@@ -809,17 +809,17 @@ PrefabInstance:
     - target: {fileID: 5712776267405310157, guid: 9e6db6bb842836c4e8ea9c9b5a04a67b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.00186
+      value: 0.00049
       objectReference: {fileID: 0}
     - target: {fileID: 5712776267405310157, guid: 9e6db6bb842836c4e8ea9c9b5a04a67b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.00581
+      value: 0.00282
       objectReference: {fileID: 0}
     - target: {fileID: 5712776267405310157, guid: 9e6db6bb842836c4e8ea9c9b5a04a67b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.003
+      value: -0.0027
       objectReference: {fileID: 0}
     - target: {fileID: 5712776267405310157, guid: 9e6db6bb842836c4e8ea9c9b5a04a67b,
         type: 3}
@@ -1371,6 +1371,7 @@ MonoBehaviour:
   - {fileID: 5281118464033477444, guid: 4106ded6515976842af958563a938795, type: 3}
   - {fileID: 7779454740741659901, guid: 0f3f7eb8619958c418480916c922c736, type: 3}
   requiredScores: 0000000001000000020000000300000004000000
+  handObject: {fileID: 591400715}
   nextUpgradeScore: 1
 --- !u!114 &387778826
 MonoBehaviour:
@@ -2739,8 +2740,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zombieSpawner: {fileID: 457624691}
-  waveAmount: 1
+  waveAmount: 4
   waveMultiplierIncrease: 2
+  DELAY_BETWEEN_WAVES: 5
   weaponManager: {fileID: 387778825}
 --- !u!4 &760593200
 Transform:
