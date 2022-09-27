@@ -11,15 +11,14 @@ public class MainMenu : MonoBehaviour
     {
         Application.Quit();
         Debug.Log("Game Closed");
-
-
-
-
     }
     public void StartButton()
     {
         SceneManager.LoadScene("Main");
-        
+    }
 
+    public void MainMenuButton()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 }
