@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
-{
+{   
+    public static WeaponManager Instance { get; private set; }
     [SerializeField] List<GameObject> weapons;
     [SerializeField] List<int> requiredScores;
 
@@ -11,13 +12,37 @@ public class WeaponManager : MonoBehaviour
 
     public int nextUpgradeScore = 3;
 
+    private void Awake(){
+        // If there is an instance, and it's not me, delete myself
+        if (Instance != null && Instance != this) 
+        { 
+            Destroy(this); 
+        } 
+        else 
+        { 
+            Instance = this; 
+        } 
+    }
+
     public void UpgradeWeapon(){
         currentWeaponIndex++;
 
         GameObject new_weapon = weapons[currentWeaponIndex];
 
         // remove previous weapon gameobject
-        GameObject childToRemove = transform.GetChild(0).gameObject;
+        bool weaponObjectFound = false;
+        int childIndex = 0;
+        GameObject childToRemove = transform.GetChild(childIndex).gameObject;
+        
+        // finds the weapon object to remove
+        while(!weaponObjectFound){
+            childToRemove = transform.GetChild(childIndex).gameObject;
+            if(childToRemove.tag == "Weapon"){
+                weaponObjectFound = true;
+            }
+            childIndex++;
+        }
+
         // childToRemove.parent = null;
         Destroy(childToRemove);
 
@@ -26,7 +51,15 @@ public class WeaponManager : MonoBehaviour
 
         new_weapon_instance.transform.parent = transform; 
 
+        if(currentWeaponIndex+1 > requiredScores.Count-1){
+            return;
+        }
+
         // sets the nextUpgradeScore from list
         nextUpgradeScore = requiredScores[currentWeaponIndex+1];
+    }
+
+    public int getCurrentBulletDamage(){
+        return weapons[currentWeaponIndex].GetComponent<Shoot>().bulletDamage;
     }
 }
