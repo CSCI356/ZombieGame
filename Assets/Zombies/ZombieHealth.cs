@@ -22,6 +22,7 @@ public class ZombieHealth : MonoBehaviour
         if (collision.gameObject.tag == "Bullet"){
             int damage = WeaponManager.Instance.getCurrentBulletDamage();
             health-=damage;
+            SoundFXManager.Instance.PlayZombieGroanSound();
 
             DamageSelfText(damage);
 
