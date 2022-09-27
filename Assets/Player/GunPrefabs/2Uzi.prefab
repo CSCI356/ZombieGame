@@ -103,8 +103,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7578735233101389547}
-  - component: {fileID: 7578735233101389546}
   - component: {fileID: -2376916712888199524}
+  - component: {fileID: -4755038557342127115}
   m_Layer: 0
   m_Name: 2Uzi
   m_TagString: Weapon
@@ -120,32 +120,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7578735233101389544}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.004759979, y: 0.02013, z: 0.0060399994}
+  m_LocalPosition: {x: 0, y: 0.02, z: 0.005}
   m_LocalScale: {x: 0.002, y: 0.005, z: 0.002}
   m_Children:
   - {fileID: 7578735232732539496}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!114 &7578735233101389546
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7578735233101389544}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c331113ec1e6c4b47b42245b3c054ace, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bullet: {fileID: 4698090078698915553, guid: 78ff2dbc3252c4645aec3d474febedc7, type: 3}
-  bulletPower: 5
-  barrel: {fileID: 7578735232732539497}
-  automatic: 1
-  fireRate: 0.1
-  bulletDamage: 1
-  fireSound: {fileID: -2376916712888199524}
 --- !u!82 &-2376916712888199524
 AudioSource:
   m_ObjectHideFlags: 0
@@ -242,3 +223,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-4755038557342127115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7578735233101389544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c331113ec1e6c4b47b42245b3c054ace, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 4698090078698915553, guid: 78ff2dbc3252c4645aec3d474febedc7, type: 3}
+  bulletPower: 5
+  barrel: {fileID: 7578735232732539497}
+  automatic: 1
+  fireRate: 0.1
+  bulletDamage: 1
+  fireSound: {fileID: -2376916712888199524}

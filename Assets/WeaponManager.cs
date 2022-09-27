@@ -8,6 +8,8 @@ public class WeaponManager : MonoBehaviour
     [SerializeField] List<GameObject> weapons;
     [SerializeField] List<int> requiredScores;
 
+    [SerializeField] GameObject handObject;
+
     int currentWeaponIndex = 0;
 
     public int nextUpgradeScore = 3;
@@ -36,7 +38,7 @@ public class WeaponManager : MonoBehaviour
         
         // finds the weapon object to remove
         while(!weaponObjectFound){
-            childToRemove = transform.GetChild(childIndex).gameObject;
+            childToRemove = handObject.transform.GetChild(childIndex).gameObject;
             if(childToRemove.tag == "Weapon"){
                 weaponObjectFound = true;
             }
@@ -49,7 +51,7 @@ public class WeaponManager : MonoBehaviour
         // set new weapon gameobject
         GameObject new_weapon_instance = Instantiate(new_weapon, transform);
 
-        new_weapon_instance.transform.parent = transform; 
+        new_weapon_instance.transform.parent = handObject.transform; 
 
         if(currentWeaponIndex+1 > requiredScores.Count-1){
             return;
