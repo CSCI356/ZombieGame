@@ -11,6 +11,7 @@ public class ZombieHealth : MonoBehaviour
     [Header("UI")]
     [SerializeField] private Transform canvasTransform;
     [SerializeField] private GameObject damageTextObject;
+    [SerializeField] private GameObject heart;
     private bool dead = false;
 
     void Awake(){
@@ -22,6 +23,7 @@ public class ZombieHealth : MonoBehaviour
         if (collision.gameObject.tag == "Bullet"){
             int damage = WeaponManager.Instance.getCurrentBulletDamage();
             health-=damage;
+            SoundFXManager.Instance.PlayZombieGroanSound();
 
             DamageSelfText(damage);
 
@@ -37,6 +39,12 @@ public class ZombieHealth : MonoBehaviour
         
         // trigger death animation
         animator.SetTrigger("dead");
+
+        // possibly drop a heart
+        if(Random.Range(0.0f, 100.0f) <= 5.0f){
+            GameObject new_heart = Instantiate(heart, this.transform);
+            new_heart.transform.parent = null;
+        }
 
         StartCoroutine(DelayedDelete());
 

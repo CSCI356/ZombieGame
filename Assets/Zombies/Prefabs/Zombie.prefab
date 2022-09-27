@@ -166,6 +166,7 @@ MonoBehaviour:
   canvasTransform: {fileID: 501142375497757198}
   damageTextObject: {fileID: 7005710171497904498, guid: db436c096b0ed6a45aa99b34d2f16fc2,
     type: 3}
+  heart: {fileID: 7843457401485769283, guid: 480f537faa34afa4bbceb4b341bf7030, type: 3}
 --- !u!114 &7753937483545166113
 MonoBehaviour:
   m_ObjectHideFlags: 0
