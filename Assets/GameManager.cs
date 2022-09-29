@@ -52,6 +52,7 @@ public class GameManager : MonoBehaviour
     public IEnumerator StartNewWave(){
         yield return new WaitForSeconds(DELAY_BETWEEN_WAVES);
         StartCoroutine(UIManager.Instance.WaveIncoming());
+        soundFXManager.PlayZombieGroanSound();
         zombieSpawner.normalZombiesToSpawn += waveAmount;
         waveAmount*=waveMultiplierIncrease;
         currentWave++;

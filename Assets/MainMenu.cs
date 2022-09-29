@@ -12,7 +12,9 @@ public class MainMenu : MonoBehaviour
     public void Awake()
     {
         int highscore = PlayerPrefs.GetInt("Highscore");
-        highscore_text.SetText(string.Format("Highscore: {0}", highscore));
+        if(highscore_text){
+            highscore_text.SetText(string.Format("Highscore: {0}", highscore));
+        }
     }
     public void ExitButton()
     {
