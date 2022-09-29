@@ -61,6 +61,11 @@ public class GameManager : MonoBehaviour
         UIManager.Instance.GameOver();
 
         // save score if its a high score
+        int previousHighScore =  PlayerPrefs.GetInt("Highscore");
+        if(kills > previousHighScore){
+            // saves high score
+            PlayerPrefs.SetInt("Highscore", kills);
+        }
     }
 }
 
