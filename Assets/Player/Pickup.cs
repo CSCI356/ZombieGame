@@ -28,7 +28,7 @@ public class Pickup : MonoBehaviour
 
     void Update()
     {
-
+       
         // SELECT WEAPONS
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
@@ -121,7 +121,10 @@ public class Pickup : MonoBehaviour
             currentWeapon.SetActive(true);
         }
     }
+    void itemHighlight()
+    {
 
+    }
     // pickup items. (placeable Wall)
     void pickup()
     {

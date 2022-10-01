@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 
 public class Health : MonoBehaviour
 {
-
+    public ParticleSystem deathEffect;
     public float health = 100;
     // Start is called before the first frame update
     void Start()
@@ -20,17 +20,18 @@ public class Health : MonoBehaviour
         if(health <= 0)
         {
             Destroy(gameObject);
-            PlayPartical();
+            // spawn death effect (ParticleSystem)
+            Instantiate(deathEffect, transform.position, Quaternion.identity);
         }
     }
 
-    void PlayPartical()
+   
+    // testing
+  /*  void Update()
     {
-
-    }
-    // Update is called once per frame
-    void Update()
-    {
-      
-    }
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            Damaged(50);
+        }
+    }*/
 }
