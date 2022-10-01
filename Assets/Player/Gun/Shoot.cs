@@ -50,7 +50,7 @@ public class Shoot : MonoBehaviour
    }
 
    IEnumerator DelayedDelete(GameObject bullet){
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
         // deletes zombie
         Destroy(bullet);
     }
