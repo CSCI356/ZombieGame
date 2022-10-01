@@ -25,7 +25,7 @@ public class Shooting : MonoBehaviour
         Vector3 AimInput = new Vector3(aimVelocity.x, 0f, aimVelocity.z);
         Vector3 lookAtPoint = transform.position + AimInput;
         transform.LookAt(lookAtPoint);
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetButtonDown("Fire1"))
         {
             Shoot();
         }
