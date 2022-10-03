@@ -1,21 +1,18 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!208 &4657852432336552730
-NavMeshObstacle:
+--- !u!65 &658631775283563614
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4620257887582080005}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.90000004, y: 0.45000002, z: 0.6}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0.85, z: 0}
-  m_TimeToStationary: 0.5
+  serializedVersion: 2
+  m_Size: {x: 1.8, y: 0.9, z: 1.2}
+  m_Center: {x: 0, y: 0.84999996, z: 0}
 --- !u!114 &364994567
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31,6 +28,7 @@ MonoBehaviour:
   deathEffect: {fileID: 3594627867943987644, guid: a81f92248ff6f2145b7b533c6da01d20,
     type: 3}
   health: 100
+  delay: 1
 --- !u!1001 &3554138490988431757
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -46,7 +44,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 5f552bcfcdf079f419aafc22bb74769a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5f552bcfcdf079f419aafc22bb74769a,
         type: 3}

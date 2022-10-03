@@ -25,7 +25,7 @@ public class PlayerDesktopMovement : MonoBehaviour
         transform.Rotate(0, ang, 0);
 
         if(moveZ != 0){
-            Debug.Log("Running");
+            //Debug.Log("Running");
             animator.SetTrigger("isRunning");
             
             if(coolDown <= 0){

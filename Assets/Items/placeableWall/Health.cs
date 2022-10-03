@@ -7,6 +7,8 @@ public class Health : MonoBehaviour
 {
     public ParticleSystem deathEffect;
     public float health = 100;
+    private float timeToDamage = 1;
+    public float delay = 1;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,13 +27,23 @@ public class Health : MonoBehaviour
         }
     }
 
-   
-    // testing
-  /*  void Update()
+    private void OnCollisionEnter(Collision collision)
     {
-        if (Input.GetKeyDown(KeyCode.L))
+        timeToDamage = Time.time + 1;
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if(timeToDamage <= Time.time && collision.gameObject.tag == "Zombies")
         {
-            Damaged(50);
+            timeToDamage = Time.time + 1;
+            Damaged(10);
         }
-    }*/
+    }
+
+    // testing
+    void Update()
+    {
+        
+    }
 }

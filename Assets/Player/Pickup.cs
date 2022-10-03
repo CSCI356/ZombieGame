@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Pickup : MonoBehaviour
 {
@@ -28,7 +29,7 @@ public class Pickup : MonoBehaviour
 
     void Update()
     {
-       
+
         // SELECT WEAPONS
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
@@ -44,8 +45,11 @@ public class Pickup : MonoBehaviour
         RaycastHit hit;
         Ray ray = new Ray(cameraTransform.position, cameraTransform.forward);
 
+       // LayerMask mask = LayerMask.GetMask("Item", weaponTag);
+
         if (Physics.Raycast(ray, out hit))
         {
+            
             if (hit.transform.CompareTag(weaponTag) && Input.GetKeyDown(pickupKey) && weapons.Count < maxWeapons)
             {
 
@@ -60,6 +64,12 @@ public class Pickup : MonoBehaviour
                 // in our hand at some point we do it now.
                 hit.transform.parent = hand;
                 hit.transform.position = Vector3.zero;
+            }
+            // run pickup if the tag is Item and placeableItem is null (empty)
+            else if ((Input.GetKeyDown(pickupKey)) && placeableItem == null && hit.transform.CompareTag("Item"))
+            {
+               
+                pickup(hit);
             }
         }
 
@@ -89,16 +99,12 @@ public class Pickup : MonoBehaviour
             currentWeapon = null;
         }
 
-        // pickup placeable item
-        // add later 
 
         // use placeable item
         if (Input.GetKeyDown(PlaceKey))
         {
             placeItem();
         }
-
-
     }
 
     void SelectWeapon(int index)
@@ -126,35 +132,25 @@ public class Pickup : MonoBehaviour
 
     }
     // pickup items. (placeable Wall)
-    void pickup()
+    void pickup(RaycastHit hit)
     {
-        RaycastHit hit;
-        Ray ray = new Ray(cameraTransform.position, cameraTransform.forward);
+        placeableItem = hit.transform.gameObject.GetComponent<GetPickupItem>().GetPickedItem();
 
-        if (Physics.Raycast(ray, out hit))
-        {
-            if (hit.transform.CompareTag("obtainable") && Input.GetKeyDown(pickupKey))
-            {
-                // save the item to placeableItem               
-                placeableItem = (hit.collider.gameObject);
-
-                // hide the placeable item in the world 
-                hit.collider.gameObject.SetActive(false);
-            }
-        }
-
+        //destory the pickup item from the world
+        Destroy(hit.transform.gameObject);
     }
     // place item (wall)
     void placeItem()
     {
+        print("place Item");
         // the amount of units in front of the player the object will be created 
-        float units = 2;
+        float units = 0.02f;
 
         // if player has an item to place (wall)
         if (placeableItem != null)
         {
             // snap rotation to ether 0, 90, 180, 270 based on players rotation 
-            float playerRotation = transform.eulerAngles.y;
+           /* float playerRotation = transform.eulerAngles.y;
 
             float itemFace = 0;
 
@@ -164,9 +160,10 @@ public class Pickup : MonoBehaviour
                 itemFace = 180;
             else if (playerRotation > 225 && playerRotation < 315)
                 itemFace = 270;
+            print(playerRotation);*/
 
-            // place object near player, thats some units ahead on the x axis     
-            Instantiate(placeableItem, transform.TransformPoint(new Vector3(units, 0, 0f)), new Quaternion(0.0f, itemFace, 0.0f, 0.0f));
+            // place object near player, thats some units ahead on the z axis     
+            Instantiate(placeableItem, transform.TransformPoint(new Vector3(0, 0, units)), transform.rotation);
 
             // reset placeableItem to null
             placeableItem = null;
