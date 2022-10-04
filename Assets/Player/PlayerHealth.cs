@@ -5,9 +5,10 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] private int health = 100;
+    private SoundFXManager soundFXManager;
 
-    void Update(){
-
+    void Start(){
+        soundFXManager = SoundFXManager.Instance;
     }
 
     void OnCollisionStay(Collision collision)
@@ -16,6 +17,8 @@ public class PlayerHealth : MonoBehaviour
             // for now, just default -1 damage
             // TODO: make 'damage' an attribute on the zombies
             health-=1;
+
+            soundFXManager.PlayDamageSound();
 
             Debug.Log(string.Format("Player damaged: {0}", health));
 
@@ -26,9 +29,11 @@ public class PlayerHealth : MonoBehaviour
                 Death();
             }
         }
+        
         //hit heart
         if((collision.gameObject.tag == "Item") && (health <= 100))
         {
+            soundFXManager.PlayCollectibleSound();
             if (health > 90)
             {
                 health = 100;

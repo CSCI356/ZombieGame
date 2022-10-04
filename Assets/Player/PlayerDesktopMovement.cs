@@ -9,6 +9,9 @@ public class PlayerDesktopMovement : MonoBehaviour
 
     Animator animator;
 
+    private float steppingSpeed = 0.2f;
+    private float coolDown = 0;
+
     void Start(){
         animator = GetComponent<Animator>();
     }
@@ -24,6 +27,13 @@ public class PlayerDesktopMovement : MonoBehaviour
         if(moveZ != 0){
             Debug.Log("Running");
             animator.SetTrigger("isRunning");
+            
+            if(coolDown <= 0){
+                coolDown = steppingSpeed;
+                SoundFXManager.Instance.PlayWalkingSound();
+            }else{
+                coolDown -= Time.deltaTime;
+            }
         }
 
         transform.Translate(0, 0, moveZ);

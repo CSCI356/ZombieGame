@@ -7,13 +7,15 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI health;
     [SerializeField] private TextMeshProUGUI kills;
+    [SerializeField] private GameObject gameOver;
+    [SerializeField] private GameObject controls;
     [SerializeField] private TextMeshProUGUI gameOver;
     [SerializeField] private TextMeshProUGUI level;
     [SerializeField] private TextMeshProUGUI experience;
 
-    [SerializeField] private TextMeshProUGUI waveComplete;
+    [SerializeField] private GameObject waveComplete;
 
-    [SerializeField] private TextMeshProUGUI waveIncoming;
+    [SerializeField] private GameObject waveIncoming;
 
     public static UIManager Instance { get; private set; }
 
@@ -36,9 +38,8 @@ public class UIManager : MonoBehaviour
         health.SetText(string.Format("{0}", health_int));
     }
 
-    public void UpdateKills(int kills_int)
-    {
-        kills.SetText(string.Format("Kills: {0}", kills_int));
+    public void UpdateKills(int kills_int){
+        kills.SetText(string.Format("{0}", kills_int));
     }
 
     public void UpdateLevel(int level_int)
@@ -54,6 +55,7 @@ public class UIManager : MonoBehaviour
     public void GameOver()
     {
         gameOver.gameObject.SetActive(true);
+        controls.gameObject.SetActive(false);
     }
 
     public IEnumerator WaveComplete()

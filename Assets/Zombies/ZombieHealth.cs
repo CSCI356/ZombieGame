@@ -11,6 +11,8 @@ public class ZombieHealth : MonoBehaviour
     [Header("UI")]
     [SerializeField] private Transform canvasTransform;
     [SerializeField] private GameObject damageTextObject;
+    [SerializeField] private GameObject heart;
+    private bool dead = false;
 
     void Awake(){
         animator = GetComponentInChildren<Animator>();
@@ -19,22 +21,30 @@ public class ZombieHealth : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Bullet"){
-            // for now, just default -10 damage 
-            health-=10;
+            int damage = WeaponManager.Instance.getCurrentBulletDamage();
+            health-=damage;
+            SoundFXManager.Instance.PlayZombieGroanSound();
 
-            DamageSelfText(10);
+            DamageSelfText(damage);
 
-            if(health == 0){
+            if((health <= 0) && (!dead)){
                 Death();
             }
         }
     }
 
     void Death(){
+        dead = true;
         Debug.Log("Died");
         
         // trigger death animation
         animator.SetTrigger("dead");
+
+        // possibly drop a heart
+        if(Random.Range(0.0f, 100.0f) <= 20.0f){
+            GameObject new_heart = Instantiate(heart, this.transform);
+            new_heart.transform.parent = null;
+        }
 
         StartCoroutine(DelayedDelete());
 
@@ -54,6 +64,6 @@ public class ZombieHealth : MonoBehaviour
     private void DamageSelfText(int amountOfDamage) {
         GameObject damageObjectInstance = Instantiate(damageTextObject, canvasTransform);
 
-        //damageObjectInstance.GetComponentInChildren<TMP_Text>().text = "-" + amountOfDamage;
+        damageObjectInstance.GetComponentInChildren<TMP_Text>().text = "-" + amountOfDamage;
     }
 }

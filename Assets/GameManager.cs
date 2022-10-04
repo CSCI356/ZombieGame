@@ -11,9 +11,10 @@ public class GameManager : MonoBehaviour
     private int currentWave = 1;
     [SerializeField] private int waveAmount = 3;
     [SerializeField] private int waveMultiplierIncrease = 2;
-    [SerializeField] private const int DELAY_BETWEEN_WAVES = 10;
+    [SerializeField] private int DELAY_BETWEEN_WAVES = 10;
 
     [SerializeField] WeaponManager weaponManager;
+    private SoundFXManager soundFXManager;
 
     private void Awake(){
         // If there is an instance, and it's not me, delete myself
@@ -27,7 +28,9 @@ public class GameManager : MonoBehaviour
         } 
     }
 
+
     private void Start(){
+        soundFXManager = SoundFXManager.Instance;
         StartCoroutine(StartNewWave());
     }
 
@@ -41,6 +44,7 @@ public class GameManager : MonoBehaviour
 
         if(kills == zombieSpawner.normalZombiesToSpawn){
             StartCoroutine(UIManager.Instance.WaveComplete());
+            soundFXManager.PlayWaveCompleteSound();
             StartCoroutine(StartNewWave());
         }
     }
@@ -48,6 +52,7 @@ public class GameManager : MonoBehaviour
     public IEnumerator StartNewWave(){
         yield return new WaitForSeconds(DELAY_BETWEEN_WAVES);
         StartCoroutine(UIManager.Instance.WaveIncoming());
+        soundFXManager.PlayZombieGroanSound();
         zombieSpawner.normalZombiesToSpawn += waveAmount;
         waveAmount*=waveMultiplierIncrease;
         currentWave++;
@@ -57,6 +62,11 @@ public class GameManager : MonoBehaviour
         UIManager.Instance.GameOver();
 
         // save score if its a high score
+        int previousHighScore =  PlayerPrefs.GetInt("Highscore");
+        if(kills > previousHighScore){
+            // saves high score
+            PlayerPrefs.SetInt("Highscore", kills);
+        }
     }
 }
 
