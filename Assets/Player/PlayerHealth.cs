@@ -1,16 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
 
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] private int health = 100;
-    public Image healthBar;
-    public Sprite healthBarFull, healthBar75, healthBar50, healthBar25, healthBar0;
-    public TextMeshProUGUI healthText;
-
     private SoundFXManager soundFXManager;
 
     void Start(){
@@ -52,30 +46,6 @@ public class PlayerHealth : MonoBehaviour
             UIManager.Instance.UpdateHealth(health);
         }
 
-        if (health <= 100 && health > 75) {
-                healthBar.sprite = healthBarFull;
-                healthText.color = Color.white;
-        }
-
-        if (health <= 75 && health > 50) {
-                healthBar.sprite = healthBar75;
-                healthText.color = Color.black;
-        }
-
-        if (health <= 50 && health > 25) {
-                healthBar.sprite = healthBar50;
-                healthText.color = Color.white;
-        }
-
-        if (health <= 25 && health > 0) {
-                healthBar.sprite = healthBar25;
-                healthText.color = Color.white;
-        }
-
-        if (health == 0) {
-                healthBar.sprite = healthBar0;
-                healthText.color = Color.white;
-        }
     }
 
     void Death(){
