@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using UnityEngine;
 [RequireComponent(typeof(Rigidbody), typeof(BoxCollider))]
 
@@ -7,7 +8,9 @@ public class JoystickController : MonoBehaviour
 {
     [SerializeField] private Rigidbody _rigidbody;
     [SerializeField] private FixedJoystick _joystick;
+    
     [SerializeField] private Animator animator;
+    Vector3 aimVelocity;
 
     [SerializeField] private float _moveSpeed;
 
@@ -23,4 +26,5 @@ public class JoystickController : MonoBehaviour
         else
             animator.SetBool("isRunning", false);
     }
+   
 }

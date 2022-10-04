@@ -41,7 +41,7 @@ public class ZombieHealth : MonoBehaviour
         animator.SetTrigger("dead");
 
         // possibly drop a heart
-        if(Random.Range(0.0f, 100.0f) <= 5.0f){
+        if(Random.Range(0.0f, 100.0f) <= 20.0f){
             GameObject new_heart = Instantiate(heart, this.transform);
             new_heart.transform.parent = null;
         }

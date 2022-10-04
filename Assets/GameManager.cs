@@ -52,6 +52,7 @@ public class GameManager : MonoBehaviour
     public IEnumerator StartNewWave(){
         yield return new WaitForSeconds(DELAY_BETWEEN_WAVES);
         StartCoroutine(UIManager.Instance.WaveIncoming());
+        soundFXManager.PlayZombieGroanSound();
         zombieSpawner.normalZombiesToSpawn += waveAmount;
         waveAmount*=waveMultiplierIncrease;
         currentWave++;
@@ -61,6 +62,11 @@ public class GameManager : MonoBehaviour
         UIManager.Instance.GameOver();
 
         // save score if its a high score
+        int previousHighScore =  PlayerPrefs.GetInt("Highscore");
+        if(kills > previousHighScore){
+            // saves high score
+            PlayerPrefs.SetInt("Highscore", kills);
+        }
     }
 }
 
