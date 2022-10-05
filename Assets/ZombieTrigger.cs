@@ -16,22 +16,16 @@ public class ZombieTrigger : MonoBehaviour
         if (other.tag == "Zombies")
         {
             other.gameObject.GetComponent<ZombieMovement>().inRadius = true;
+            other.gameObject.GetComponent<ZombieMovement>().setSpeed();
         }
     }
 
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.tag == "Zombies")
-        {
-            GameEvents.current.MovementTrigger();
-        }
-
-    }
     private void OnTriggerExit(Collider other)
     {
         if (other.tag == "Zombies")
         {
             other.gameObject.GetComponent<ZombieMovement>().inRadius = false;
+            other.gameObject.GetComponent<ZombieMovement>().setSpeed();
         }
     }
 

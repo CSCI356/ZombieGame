@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Rocks.meta
 guid: aeed952c635c0e449a1b9c72c0e33a60
+========
+guid: bc21e4e42cec2104cacabc2d7fb686cf
+>>>>>>>> Zombie-Navigation:Assets/Scenes/Main.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
