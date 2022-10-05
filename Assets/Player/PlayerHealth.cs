@@ -14,7 +14,7 @@ public class PlayerHealth : MonoBehaviour
 
     void OnCollisionStay(Collision collision)
     {
-        if ((collision.gameObject.tag == "Zombies") && (health > 0) && (collision.gameObject.GetComponent<ZombieHealth>().dead = false))
+        if ((collision.gameObject.tag == "Zombies") && (health > 0) && !(collision.gameObject.GetComponent<ZombieHealth>().dead))
         {
             // for now, just default -1 damage
             // TODO: make 'damage' an attribute on the zombies
