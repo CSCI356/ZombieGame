@@ -49,7 +49,7 @@ public class Pickup : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit))
         {
-            
+           
             if (hit.transform.CompareTag(weaponTag) && Input.GetKeyDown(pickupKey) && weapons.Count < maxWeapons)
             {
 
@@ -149,24 +149,13 @@ public class Pickup : MonoBehaviour
         // if player has an item to place (wall)
         if (placeableItem != null)
         {
-            // snap rotation to ether 0, 90, 180, 270 based on players rotation 
-           /* float playerRotation = transform.eulerAngles.y;
-
-            float itemFace = 0;
-
-            if (playerRotation > 45 && playerRotation < 135)
-                itemFace = 90;
-            else if (playerRotation > 135 && playerRotation < 225)
-                itemFace = 180;
-            else if (playerRotation > 225 && playerRotation < 315)
-                itemFace = 270;
-            print(playerRotation);*/
 
             // place object near player, thats some units ahead on the z axis     
             Instantiate(placeableItem, transform.TransformPoint(new Vector3(0, 0, units)), transform.rotation);
-
-            // reset placeableItem to null
             placeableItem = null;
+            
+            
+            
 
         }
     }
