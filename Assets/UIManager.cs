@@ -7,9 +7,8 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI health;
     [SerializeField] private TextMeshProUGUI kills;
-    //[SerializeField] private GameObject gameOver;
+    [SerializeField] private GameObject gameOver;
     [SerializeField] private GameObject controls;
-    [SerializeField] private TextMeshProUGUI gameOver;
     [SerializeField] private TextMeshProUGUI level;
     [SerializeField] private TextMeshProUGUI experience;
 
