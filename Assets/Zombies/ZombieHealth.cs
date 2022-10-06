@@ -49,9 +49,18 @@ public class ZombieHealth : MonoBehaviour
         animator.SetTrigger("dead");
 
         // possibly drop a heart
-        if (Random.Range(0.0f, 100.0f) <= 20.0f)
+        if (Random.Range(0.0f, 100.0f) <= 100.0f)
         {
-            GameObject new_heart = Instantiate(heart, this.transform);
+            GameObject new_heart = Instantiate(heart);
+            
+            // sets correct position
+            new_heart.transform.position = new Vector3(
+                this.transform.position.x, 
+                1,
+                this.transform.position.z);
+
+            // detach from zombie otherwise will get destroyed
+            // with it
             new_heart.transform.parent = null;
         }
 
