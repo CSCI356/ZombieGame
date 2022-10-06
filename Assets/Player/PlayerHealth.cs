@@ -56,6 +56,7 @@ public class PlayerHealth : MonoBehaviour
     {
         Debug.Log("Died");
         // trigger death animation
+        Time.timeScale = 0;
 
         // trigger gameover sequence
         GameManager.Instance.GameOver();
