@@ -12,7 +12,10 @@ public class PlayerDesktopMovement : MonoBehaviour
     private float steppingSpeed = 0.2f;
     private float coolDown = 0;
 
+    Rigidbody rigidbody;
+
     void Start(){
+        rigidbody = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
     }
 
@@ -36,6 +39,11 @@ public class PlayerDesktopMovement : MonoBehaviour
             }
         }
 
+        // NOTE: using transform.Translate is 'smoother' but allows player 
+        // to break through boundaries
+        // TODO: Ideally, we want to use the force so the player cannot break
+        // through the boundaries BUT currently this makes the camera jolty
         transform.Translate(0, 0, moveZ);
+        // rigidbody.AddForce(transform.forward * moveZ, ForceMode.Impulse);
     }
 }
