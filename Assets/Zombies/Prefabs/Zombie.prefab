@@ -168,6 +168,8 @@ MonoBehaviour:
   damageTextObject: {fileID: 7005710171497904498, guid: db436c096b0ed6a45aa99b34d2f16fc2,
     type: 3}
   heart: {fileID: 7843457401485769283, guid: 480f537faa34afa4bbceb4b341bf7030, type: 3}
+  wall: {fileID: 1405795784158556755, guid: 22089b001c592f94a914f19846002350, type: 3}
+  dead: 0
 --- !u!114 &7753937483545166113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,8 +184,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inRadius: 0
   agent: {fileID: 7048620528241020718}
-  playerInRadius: 0
-  speed: 5
+  wanderSpeed: 2
+  followSpeed: 5
   walkRadius: 100
 --- !u!136 &7753937483545166118
 CapsuleCollider:

@@ -7,6 +7,7 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI health;
     [SerializeField] private TextMeshProUGUI kills;
+    [SerializeField] private TextMeshProUGUI wallCount;
     [SerializeField] private GameObject gameOver;
     [SerializeField] private GameObject controls;
     [SerializeField] private TextMeshProUGUI level;
@@ -40,6 +41,11 @@ public class UIManager : MonoBehaviour
     public void UpdateKills(int kills_int)
     {
         kills.SetText(string.Format("{0}", kills_int));
+    }
+
+    public void UpdateWallCount(int wall_count_int)
+    {
+        wallCount.SetText(string.Format("{0}", wall_count_int));
     }
 
     public void UpdateLevel(int level_int)

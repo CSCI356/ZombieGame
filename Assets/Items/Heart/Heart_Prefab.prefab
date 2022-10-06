@@ -111,7 +111,7 @@ PrefabInstance:
     - target: {fileID: 5632802578503181049, guid: 5d44f7579ca2348409981d4b4a4c7d28,
         type: 3}
       propertyPath: m_Name
-      value: Heart (1)
+      value: Heart
       objectReference: {fileID: 0}
     - target: {fileID: 6137069740616155948, guid: 5d44f7579ca2348409981d4b4a4c7d28,
         type: 3}

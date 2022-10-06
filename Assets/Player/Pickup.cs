@@ -4,11 +4,9 @@ using UnityEngine.UI;
 
 public class Pickup : MonoBehaviour
 {
-    public Transform cameraTransform;
-    public KeyCode pickupKey = KeyCode.E;
-    public KeyCode dropKey = KeyCode.G;
     public KeyCode PlaceKey = KeyCode.P;
     string weaponTag = "Weapon";
+    string itemTag = "Item";
 
     public List<GameObject> weapons;
     public int maxWeapons = 2;
@@ -25,80 +23,40 @@ public class Pickup : MonoBehaviour
 
 
     // placeable item hold (of 1)
-    public GameObject placeableItem = null;
+    public List<GameObject> placeableItems;
 
     void Update()
     {
 
         // SELECT WEAPONS
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            SelectWeapon(0);
-        }
+        // if (Input.GetKeyDown(KeyCode.Alpha1))
+        // {
+        //     SelectWeapon(0);
+        // }
 
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            SelectWeapon(1);
-        }
+        // if (Input.GetKeyDown(KeyCode.Alpha2))
+        // {
+        //     SelectWeapon(1);
+        // }
 
-        // PICKUP WEAPONS
-        RaycastHit hit;
-        Ray ray = new Ray(cameraTransform.position, cameraTransform.forward);
-
-       // LayerMask mask = LayerMask.GetMask("Item", weaponTag);
-
-        if (Physics.Raycast(ray, out hit))
-        {
+        // {
             
-            if (hit.transform.CompareTag(weaponTag) && Input.GetKeyDown(pickupKey) && weapons.Count < maxWeapons)
-            {
+        //     if ((hit.transform.CompareTag(weaponTag)) && weapons.Count < maxWeapons))
+        //     {
 
-                // save the weapon                
-                weapons.Add(hit.collider.gameObject);
+        //         // save the weapon                
+        //         weapons.Add(hit.collider.gameObject);
 
-                // hides the weapon because it's now in our 'inventory'
-                hit.collider.gameObject.SetActive(false);
+        //         // hides the weapon because it's now in our 'inventory'
+        //         hit.collider.gameObject.SetActive(false);
 
-                // now we can positioning the weapon at many other places.
-                // but for this demonstration where we just want to show a weapon
-                // in our hand at some point we do it now.
-                hit.transform.parent = hand;
-                hit.transform.position = Vector3.zero;
-            }
-            // run pickup if the tag is Item and placeableItem is null (empty)
-            else if ((Input.GetKeyDown(pickupKey)) && placeableItem == null && hit.transform.CompareTag("Item"))
-            {
-               
-                pickup(hit);
-            }
-        }
-
-        // DROP WEAPONS
-        // So let's say you wanted to add a feature where you wanted to drop the weapon you carry in your hand
-        if (Input.GetKeyDown(dropKey) && currentWeapon != null)
-        {
-
-            // First ensure we remove our hand as parent for the weapon
-            currentWeapon.transform.parent = null;
-
-            // Move the weapon to the drop position
-            currentWeapon.transform.position = dropPoint.position;
-
-            // Remove it from our 'inventory'            
-            var weaponInstanceId = currentWeapon.GetInstanceID();
-            for (int i = 0; i < weapons.Count; i++)
-            {
-                if (weapons[i].GetInstanceID() == weaponInstanceId)
-                {
-                    weapons.RemoveAt(i);
-                    break;
-                }
-            }
-
-            // Remove it from our 'hand'
-            currentWeapon = null;
-        }
-
+        //         // now we can positioning the weapon at many other places.
+        //         // but for this demonstration where we just want to show a weapon
+        //         // in our hand at some point we do it now.
+        //         hit.transform.parent = hand;
+        //         hit.transform.position = Vector3.zero;
+        //     }
+        // }
 
         // use placeable item
         if (Input.GetKeyDown(PlaceKey))
@@ -127,30 +85,39 @@ public class Pickup : MonoBehaviour
             currentWeapon.SetActive(true);
         }
     }
-    void itemHighlight()
-    {
 
-    }
-    // pickup items. (placeable Wall)
-    void pickup(RaycastHit hit)
+    void OnCollisionEnter(Collision collision)
     {
-        placeableItem = hit.transform.gameObject.GetComponent<GetPickupItem>().GetPickedItem();
+        Debug.Log("Collision detected");
+        if((collision.gameObject.tag == itemTag) && (collision.gameObject.name != "Heart")){
+            // Increase Item count
+            pickup(collision);
+        }else if(collision.gameObject.tag == weaponTag){
+            // do something with weapon
+        }
+    }
+
+    void pickup(Collision col)
+    {   
+        placeableItems.Add(col.transform.gameObject.GetComponent<GetPickupItem>().GetPickedItem());
+
+        UIManager.Instance.UpdateWallCount(placeableItems.Count);
 
         //destory the pickup item from the world
-        Destroy(hit.transform.gameObject);
+        Destroy(col.transform.gameObject);
     }
-    // place item (wall)
+
     void placeItem()
     {
-        print("place Item");
+        Debug.Log("place Item");
         // the amount of units in front of the player the object will be created 
         float units = 0.02f;
 
         // if player has an item to place (wall)
-        if (placeableItem != null)
+        if (placeableItems.Count > 0)
         {
             // snap rotation to ether 0, 90, 180, 270 based on players rotation 
-           /* float playerRotation = transform.eulerAngles.y;
+            float playerRotation = transform.eulerAngles.y;
 
             float itemFace = 0;
 
@@ -160,14 +127,17 @@ public class Pickup : MonoBehaviour
                 itemFace = 180;
             else if (playerRotation > 225 && playerRotation < 315)
                 itemFace = 270;
-            print(playerRotation);*/
+            Debug.Log(playerRotation);
+
+            Quaternion new_rotation = Quaternion.Euler(0, itemFace, 0);
 
             // place object near player, thats some units ahead on the z axis     
-            Instantiate(placeableItem, transform.TransformPoint(new Vector3(0, 0, units)), transform.rotation);
+            Instantiate(placeableItems[0], transform.TransformPoint(new Vector3(0, 0, units)), new_rotation);
 
             // reset placeableItem to null
-            placeableItem = null;
+            placeableItems.RemoveAt(0);
 
+            UIManager.Instance.UpdateWallCount(placeableItems.Count);
         }
     }
 }

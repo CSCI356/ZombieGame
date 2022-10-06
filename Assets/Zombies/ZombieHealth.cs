@@ -12,6 +12,7 @@ public class ZombieHealth : MonoBehaviour
     [SerializeField] private Transform canvasTransform;
     [SerializeField] private GameObject damageTextObject;
     [SerializeField] private GameObject heart;
+    [SerializeField] private GameObject wall;
     public bool dead = false;
     private Rigidbody rb;
 
@@ -49,7 +50,8 @@ public class ZombieHealth : MonoBehaviour
         animator.SetTrigger("dead");
 
         // possibly drop a heart
-        if (Random.Range(0.0f, 100.0f) <= 100.0f)
+        float randomNum = Random.Range(0.0f, 100.0f);
+        if (randomNum <= 20.0f)
         {
             GameObject new_heart = Instantiate(heart);
             
@@ -62,6 +64,18 @@ public class ZombieHealth : MonoBehaviour
             // detach from zombie otherwise will get destroyed
             // with it
             new_heart.transform.parent = null;
+        }else if(randomNum <= 40.0f){
+            GameObject new_wall = Instantiate(wall);
+            
+            // sets correct position
+            new_wall.transform.position = new Vector3(
+                this.transform.position.x, 
+                0.1f,
+                this.transform.position.z);
+
+            // detach from zombie otherwise will get destroyed
+            // with it
+            new_wall.transform.parent = null;
         }
 
         StartCoroutine(DelayedDelete());
