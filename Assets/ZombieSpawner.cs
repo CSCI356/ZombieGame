@@ -5,8 +5,8 @@ using UnityEngine;
 public class ZombieSpawner : MonoBehaviour
 {   
     public GameObject normalZombie;
-
     public GameObject bigZombie;
+    public GameObject babyZombie;
 
     public int normalZombiesToSpawn = 0;
 
@@ -16,9 +16,13 @@ public class ZombieSpawner : MonoBehaviour
 
     public int bigZombiesSpawnedCount = 0;
 
+    public int babyZombiesToSpawn = 0;
+
+    public int babyZombiesSpawnedCount = 0;
+
     void Update()
     {   
-        if((normalZombiesSpawnedCount >= normalZombiesToSpawn) && (bigZombiesSpawnedCount >= bigZombiesToSpawn)){
+        if((normalZombiesSpawnedCount >= normalZombiesToSpawn) && (bigZombiesSpawnedCount >= bigZombiesToSpawn) && (babyZombiesSpawnedCount >= babyZombiesToSpawn)){
             return;
         }
 
@@ -40,15 +44,15 @@ public class ZombieSpawner : MonoBehaviour
 
             Vector3 spawnPoint = new Vector3(xPos, 0, zPos);
             
-            if(normalZombiesSpawnedCount < normalZombiesToSpawn){
+            if(babyZombiesSpawnedCount < babyZombiesToSpawn){
+                Instantiate(babyZombie, spawnPoint, Quaternion.identity);
+                babyZombiesSpawnedCount++;
+            }else if(normalZombiesSpawnedCount < normalZombiesToSpawn){
                 Instantiate(normalZombie, spawnPoint, Quaternion.identity);
                 normalZombiesSpawnedCount++;
-                return;
-            }
-            else if(bigZombiesSpawnedCount < bigZombiesToSpawn){
+            }else if(bigZombiesSpawnedCount < bigZombiesToSpawn){
                 Instantiate(bigZombie, spawnPoint, Quaternion.identity);
                 bigZombiesSpawnedCount++;
-                return;
             }
         }
     }

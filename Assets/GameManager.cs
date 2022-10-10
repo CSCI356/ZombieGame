@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
     private int kills = 0;
+    private int currentWaveKillsGoal = 0;
 
     [SerializeField] ZombieSpawner zombieSpawner;
     private int currentWave = 1;
@@ -43,7 +44,7 @@ public class GameManager : MonoBehaviour
             weaponManager.UpgradeWeapon();
         }
 
-        if(kills == zombieSpawner.normalZombiesToSpawn){
+        if(kills == currentWaveKillsGoal){
             StartCoroutine(UIManager.Instance.WaveComplete());
             soundFXManager.PlayWaveCompleteSound();
             StartCoroutine(StartNewWave());
@@ -55,7 +56,12 @@ public class GameManager : MonoBehaviour
         StartCoroutine(UIManager.Instance.WaveIncoming());
         soundFXManager.PlayZombieGroanSound();
         zombieSpawner.normalZombiesToSpawn += waveAmount;
+        zombieSpawner.babyZombiesToSpawn += waveAmount;
         zombieSpawner.bigZombiesToSpawn += 1;
+
+        // set current goal for when the wave will end
+        currentWaveKillsGoal = (zombieSpawner.normalZombiesToSpawn + zombieSpawner.babyZombiesToSpawn + zombieSpawner.bigZombiesToSpawn);
+
         waveAmount*=waveMultiplierIncrease;
         currentWave++;
     }
