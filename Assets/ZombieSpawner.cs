@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class ZombieSpawner : MonoBehaviour
 {   
-    public GameObject zombie;
+    public GameObject normalZombie;
+
+    public GameObject bigZombie;
 
     public int normalZombiesToSpawn = 0;
 
     public int normalZombiesSpawnedCount = 0;
+    
+    public int bigZombiesToSpawn = 0;
+
+    public int bigZombiesSpawnedCount = 0;
 
     void Update()
     {   
-        if(normalZombiesSpawnedCount >= normalZombiesToSpawn){
+        if((normalZombiesSpawnedCount >= normalZombiesToSpawn) && (bigZombiesSpawnedCount >= bigZombiesToSpawn)){
             return;
         }
 
@@ -33,9 +39,17 @@ public class ZombieSpawner : MonoBehaviour
             }
 
             Vector3 spawnPoint = new Vector3(xPos, 0, zPos);
-
-            Instantiate(zombie, spawnPoint, Quaternion.identity);
-            normalZombiesSpawnedCount++;
+            
+            if(normalZombiesSpawnedCount < normalZombiesToSpawn){
+                Instantiate(normalZombie, spawnPoint, Quaternion.identity);
+                normalZombiesSpawnedCount++;
+                return;
+            }
+            else if(bigZombiesSpawnedCount < bigZombiesToSpawn){
+                Instantiate(bigZombie, spawnPoint, Quaternion.identity);
+                bigZombiesSpawnedCount++;
+                return;
+            }
         }
     }
 }

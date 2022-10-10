@@ -55,6 +55,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine(UIManager.Instance.WaveIncoming());
         soundFXManager.PlayZombieGroanSound();
         zombieSpawner.normalZombiesToSpawn += waveAmount;
+        zombieSpawner.bigZombiesToSpawn += 1;
         waveAmount*=waveMultiplierIncrease;
         currentWave++;
     }
