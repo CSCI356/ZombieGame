@@ -127,7 +127,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7753937483545166109}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 15.06}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7787071691581771307}
@@ -168,6 +168,7 @@ MonoBehaviour:
   damageTextObject: {fileID: 7005710171497904498, guid: db436c096b0ed6a45aa99b34d2f16fc2,
     type: 3}
   heart: {fileID: 7843457401485769283, guid: 480f537faa34afa4bbceb4b341bf7030, type: 3}
+  dead: 0
 --- !u!114 &7753937483545166113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,8 +183,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inRadius: 0
   agent: {fileID: 7048620528241020718}
-  playerInRadius: 0
-  speed: 5
+  wanderSpeed: 2
+  followSpeed: 5
   walkRadius: 100
 --- !u!136 &7753937483545166118
 CapsuleCollider:
