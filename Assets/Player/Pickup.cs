@@ -24,7 +24,7 @@ public class Pickup : MonoBehaviour
     public Transform dropPoint;
 
 
-    // placeable item hold (of 1)
+    public int placeableItemCount = 0;
     public GameObject placeableItem = null;
 
     void Update()
@@ -66,9 +66,8 @@ public class Pickup : MonoBehaviour
                 hit.transform.position = Vector3.zero;
             }
             // run pickup if the tag is Item and placeableItem is null (empty)
-            else if ((Input.GetKeyDown(pickupKey)) && placeableItem == null && hit.transform.CompareTag("Item"))
+            else if ((Input.GetKeyDown(pickupKey)) && hit.transform.CompareTag("Item"))
             {
-               
                 pickup(hit);
             }
         }
@@ -127,19 +126,19 @@ public class Pickup : MonoBehaviour
             currentWeapon.SetActive(true);
         }
     }
-    void itemHighlight()
-    {
 
-    }
-    // pickup items. (placeable Wall)
     void pickup(RaycastHit hit)
     {
         placeableItem = hit.transform.gameObject.GetComponent<GetPickupItem>().GetPickedItem();
 
+        placeableItemCount += 5;
+        UIManager.Instance.UpdateWallCount(placeableItemCount);
+        SoundFXManager.Instance.PlayCollectibleSound();
+
         //destory the pickup item from the world
         Destroy(hit.transform.gameObject);
     }
-    // place item (wall)
+
     void placeItem()
     {
         print("place Item");
@@ -147,16 +146,27 @@ public class Pickup : MonoBehaviour
         float units = 0.02f;
 
         // if player has an item to place (wall)
-        if (placeableItem != null)
+        if (placeableItem != null && placeableItemCount > 0)
         {
+            float playerRotation = transform.eulerAngles.y;
 
+            float itemFace = 0;
+
+            if (playerRotation > 45 && playerRotation < 135)
+                itemFace = 90;
+            else if (playerRotation > 135 && playerRotation < 225)
+                itemFace = 180;
+            else if (playerRotation > 225 && playerRotation < 315)
+                itemFace = 270;
+            Debug.Log(playerRotation);
+
+            Quaternion new_rotation = Quaternion.Euler(0, itemFace, 0);
+            
             // place object near player, thats some units ahead on the z axis     
-            Instantiate(placeableItem, transform.TransformPoint(new Vector3(0, 0, units)), transform.rotation);
-            placeableItem = null;
-            
-            
-            
-
+            Instantiate(placeableItem, transform.TransformPoint(new Vector3(0, 0, units)), new_rotation);
+            placeableItemCount -=1;
+            UIManager.Instance.UpdateWallCount(placeableItemCount);
+            SoundFXManager.Instance.PlayWalkingSound();
         }
     }
 }
