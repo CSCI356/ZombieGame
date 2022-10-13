@@ -7,13 +7,9 @@ public class Health : MonoBehaviour
 {
     public ParticleSystem deathEffect;
     public float health = 100;
-    private float timeToDamage = 1;
-    public float delay = 1;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public float delay = 0.2f;
+
+    private float coolDown = 0;
 
     void Damaged(int damTaken)
     {
@@ -27,23 +23,16 @@ public class Health : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        timeToDamage = Time.time + 1;
-    }
-
     private void OnCollisionStay(Collision collision)
     {
-        if(timeToDamage <= Time.time && collision.gameObject.tag == "Zombies")
+        if(collision.gameObject.tag == "Zombies")
         {
-            timeToDamage = Time.time + 1;
-            Damaged(10);
+            if(coolDown <= 0){
+                coolDown = delay;
+                Damaged(10);
+            }else{
+                coolDown -= Time.deltaTime;
+            }
         }
-    }
-
-    // testing
-    void Update()
-    {
-        
     }
 }

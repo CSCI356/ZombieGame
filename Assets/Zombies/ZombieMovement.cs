@@ -10,17 +10,15 @@ using UnityEngine.AI;
 public class ZombieMovement : MonoBehaviour
 {
     private Transform playerTransf;
-    // private Animator botAnimator;
     private bool stop = false;
     public bool inRadius = false;
     private Vector3 direction;
 
     public NavMeshAgent agent;
 
-    //[Range(0, 10)] public float speed;
     public float wanderSpeed = 2;
     public float followSpeed = 5;
-    [Range(1, 200)] public float walkRadius;
+    [Range(1, 10)] public float walkRadius;
 
     void Start()
     {
@@ -33,7 +31,6 @@ public class ZombieMovement : MonoBehaviour
             agent.speed = wanderSpeed;
             agent.SetDestination(RandomNavMeshLocation());
         }
-        // botAnimator = GetComponent<Animator>();
     }
 
     public void setSpeed()

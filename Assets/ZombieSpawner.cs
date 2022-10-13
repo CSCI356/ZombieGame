@@ -27,19 +27,19 @@ public class ZombieSpawner : MonoBehaviour
         }
 
         if(Random.Range(0.0f, 100.0f) < 1){
-            float xPos = 40.0f;
-            float zPos = 40.0f;
+            float xPos = 20.0f;
+            float zPos = 20.0f;
             
             if(Random.Range(0.0f, 100.0f) > 50){
                 if(Random.Range(0.0f, 100.0f) > 50){
-                    xPos = -40.0f;
+                    xPos = -20.0f;
                 }
-                zPos = Random.Range(-40.0f, 40.0f);
+                zPos = Random.Range(-20.0f, 20.0f);
             }else{
                 if(Random.Range(0.0f, 100.0f) > 50){
-                    zPos = -40.0f;
+                    zPos = -20.0f;
                 }
-                xPos = Random.Range(-40.0f, 40.0f);
+                xPos = Random.Range(-20.0f, 20.0f);
             }
 
             Vector3 spawnPoint = new Vector3(xPos, 0, zPos);
