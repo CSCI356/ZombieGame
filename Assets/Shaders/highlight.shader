@@ -8,8 +8,7 @@ Shader "Custom/Highlight"
         _Metallic("Metallic", Range(0,1)) = 0.0
         _RimColor("Rim Color", Color) = (0.26,0.19,0.16,0.0)
         _RimPower("Rim Power", Range(0,8.0)) = 3.0
-            //_RimWidth("Rim Width", Range(1.0, 5.0)) = 1.0
-            [Toggle] _IsEmission("_Emission", Float) = 0
+        [Toggle] _IsEmission("Emission", Float) = 0
     }
         SubShader
         {
@@ -38,14 +37,11 @@ Shader "Custom/Highlight"
             float _RimPower;
             float _IsEmission;
 
-
-            // #pragma instancing_options assumeuniformscaling
             UNITY_INSTANCING_BUFFER_START(Props)
-                // put more per-instance properties here
-                UNITY_INSTANCING_BUFFER_END(Props)
+            UNITY_INSTANCING_BUFFER_END(Props)
 
-                void surf(Input IN, inout SurfaceOutputStandard o)
-                {
+            void surf(Input IN, inout SurfaceOutputStandard o)
+            {
                 // Albedo comes from a texture tinted by color
                 fixed4 c = tex2D(_MainTex, IN.uv_MainTex) * _Color;
                 o.Albedo = c.rgb;
@@ -54,20 +50,15 @@ Shader "Custom/Highlight"
                 o.Smoothness = _Glossiness;
                 o.Alpha = c.a;
 
-                half rim = 1.0 - saturate(dot(normalize(IN.viewDir), o.Normal));
-
                 // turn Emission off or on 
                 if (_IsEmission == 1)
                 {
+                    half rim = 1.0 - saturate(dot(normalize(IN.viewDir), o.Normal));
                     o.Emission = _RimColor.rgb * pow(rim, _RimPower);
-                }
-                else
-                {
-
                 }
             }
         ENDCG
 
-        }
-            FallBack "Diffuse"
+                }
+                FallBack "Diffuse"
 }
