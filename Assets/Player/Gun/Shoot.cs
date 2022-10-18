@@ -20,7 +20,15 @@ public class Shoot : MonoBehaviour
     void Update()
     {   
         if (gunheat > 0) gunheat -=Time.deltaTime;
-
+      if(automatic){
+            if(Input.GetButtonDown("Fire1")){
+                this.Fire();
+            }
+        }else{
+            if(Input.GetButtonDown("Fire1")){
+                this.Fire();
+            }
+        }
         if(automatic){
             if(Input.GetKey("space")){
                 this.Fire();
